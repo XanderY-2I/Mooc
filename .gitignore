@@ -21,10 +21,10 @@ job/
 .DS_Store
 
 # Git inside online-mooc (don't double-track)
-online-mooc/.git/
 
 # Nacos config backups
 nacos/
 
 # Generated assets
 天机学堂-扩展.assets/
+online-mooc/.git.bak/

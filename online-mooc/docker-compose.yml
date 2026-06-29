@@ -1,0 +1,65 @@
+services:
+  mysql:
+    image: mysql:8.0.29
+    container_name: tj-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "123"
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    mem_limit: 400M
+
+  redis:
+    image: redis:7.0.0
+    container_name: tj-redis
+    command: redis-server --requirepass 123321
+    ports:
+      - "6379:6379"
+    mem_limit: 100M
+
+  nacos:
+    image: nacos/nacos-server:v2.1.0
+    container_name: tj-nacos
+    environment:
+      MODE: standalone
+      JVM_XMS: 256m
+      JVM_XMX: 512m
+      JVM_XMN: 128m
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+    mem_limit: 768M
+
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: tj-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_VHOST: /tjxt
+      RABBITMQ_DEFAULT_USER: tjxt
+      RABBITMQ_DEFAULT_PASS: "123321"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    mem_limit: 300M
+
+  elasticsearch:
+    image: elasticsearch:7.12.1
+    container_name: tj-es
+    environment:
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms256m -Xmx256m"
+    ports:
+      - "9200:9200"
+    mem_limit: 512M
+
+  influxdb:
+    image: influxdb:1.8.2
+    container_name: tj-influxdb
+    ports:
+      - "8086:8086"
+    mem_limit: 200M
+
+volumes:
+  mysql-data:

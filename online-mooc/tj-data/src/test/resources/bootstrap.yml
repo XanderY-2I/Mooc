@@ -1,0 +1,51 @@
+server:
+  port: 8093  #端口
+  tomcat:
+    uri-encoding: UTF-8   #服务编码
+spring:
+  profiles:
+    active: dev
+  application:
+    name: data-service
+  influx:
+    url: http://127.0.0.1:8006
+    #    password: 123456
+    #    user: admin
+    mapper-location: com.tianji.data.influxdb.mapper
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml
+        shared-configs: # 共享配置
+          - data-id: shared-spring.yaml # 共享spring配置
+            refresh: false
+          - data-id: shared-redis.yaml # 共享redis配置
+            refresh: false
+          - data-id: shared-mybatis.yaml # 共享mybatis配置
+            refresh: false
+          - data-id: shared-logs.yaml # 共享日志配置
+            refresh: false
+          - data-id: shared-feign.yaml # 共享feign配置
+            refresh: false
+          - data-id: shared-mq.yaml # 共享mq配置
+            refresh: false
+          - data-id: shared-xxljob.yaml # 共享job配置
+            refresh: false
+#          - data-id: shared-influxdb.yaml # 共享job配置
+#            refresh: false
+tj:
+  swagger:
+    enable: true
+    enableResponseWrap: true
+    package-path: com.tianji.data.controller
+    title: 智慧MOOC - 数据中心接口文档
+    description: 该服务包含数据看板统计的功能
+    contact-name: 研究院
+    contact-url: http://www.itcast.cn/
+    contact-email: 1418875140@qq.com
+    version: v1.0
+  jdbc:
+    database: tj_data
+  auth:
+    resource:
+      enable: true
