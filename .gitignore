@@ -1,0 +1,30 @@
+# Build artifacts (large jars)
+*.jar
+target/
+*.class
+
+# Node
+node_modules/
+
+# Logs
+logs/
+*.log
+job/
+
+# IDE
+.idea/
+*.iml
+.settings/
+.project
+
+# OS
+.DS_Store
+
+# Git inside online-mooc (don't double-track)
+online-mooc/.git/
+
+# Nacos config backups
+nacos/
+
+# Generated assets
+天机学堂-扩展.assets/
